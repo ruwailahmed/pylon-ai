@@ -840,3 +840,81 @@ body {
         font-size: 3rem;
     }
 }
+
+/* =========================================
+   MOBILE RESPONSIVENESS PATCH
+   ========================================= */
+
+@media (max-width: 900px) {
+    /* 1. Navigation */
+    .glass-pill-nav { 
+        width: 90%; 
+        padding: 10px 20px; 
+        gap: 15px; 
+        justify-content: space-between;
+    }
+    .nav-links { display: none; } /* Hides center links to save space */
+    .logo { font-size: 0.9rem; }
+    .nav-cta-btn { font-size: 0.8rem; padding: 6px 16px; }
+
+    /* 2. Hero Section */
+    .hero-immersive { height: auto; padding: 180px 5% 100px 5%; }
+    .gradient-text { font-size: 3rem !important; letter-spacing: -1px; }
+    .hero-subtext { font-size: 1rem; }
+    .floating-ui { display: none; } /* Hide floating depth cards to prevent clutter */
+    .glass-btn-primary { padding: 16px 32px; font-size: 1rem; width: 100%; }
+
+    /* 3. Process Section */
+    .process-section { padding: 80px 5%; }
+    .section-title { font-size: 2.5rem; }
+    .timeline-wrapper { padding-left: 30px; }
+    .step-dot { left: -34px; width: 8px; height: 8px; }
+    .glass-card { padding: 24px; }
+    .step-content h3 { font-size: 1.4rem; }
+
+    /* 4. 3D Monoliths (Services) */
+    .monolith-grid { grid-template-columns: 1fr; gap: 24px; }
+    .span-2 { grid-column: span 1; }
+    .monolith-wrapper { perspective: none; } /* Disables 3D engine on mobile */
+    .monolith-card { transform: none !important; padding: 30px; }
+    .monolith-content { transform: none !important; padding: 0; }
+    .monolith-border-glow { opacity: 1; } /* Keep the premium border always visible */
+
+    /* 5. OpenClaw / ClawdBot Section */
+    .clawdbot-section { margin-top: 60px; padding: 0 5%; }
+    .sticky-container { flex-direction: column; }
+    
+    /* Un-pin the visual and stack it */
+    .bot-visual-panel { 
+        position: relative; 
+        width: 100%; 
+        height: 350px; 
+        top: 0; 
+        margin-bottom: 40px; 
+        border-radius: 20px;
+    }
+    .openclaw-core-img { max-width: 250px; }
+    .bot-content-panel { width: 100%; padding: 0; }
+    
+    .bot-intro h2 { font-size: 2.8rem; }
+    .feature-scroll-list { gap: 60px; }
+    
+    /* Disable the scroll-fading on mobile for better reading */
+    .bot-feature-item { opacity: 1 !important; transform: none !important; }
+    .bot-feature-item h3 { font-size: 1.8rem; }
+
+    /* 6. Impact / Case Studies */
+    .impact-section { padding: 80px 5%; }
+    .metrics-grid { grid-template-columns: 1fr; gap: 24px; }
+    .metric-number { font-size: 3.5rem; }
+    .metric-card { padding: 30px; }
+
+    /* 7. Footer & Final CTA */
+    .cta-section { padding: 80px 5%; }
+    .massive-cta-text { font-size: 2.5rem; }
+    .massive-btn { width: 100%; padding: 20px; font-size: 1rem; }
+    
+    .footer-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+    .footer-brand p { margin: 0 auto; }
+    .footer-bottom { flex-direction: column; gap: 20px; }
+}

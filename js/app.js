@@ -70,41 +70,41 @@ steps.forEach((step, index) => {
     });
 });
 
-// 1. 3D Hover Effect Logic
+// 1. 3D Hover Effect Logic (Disabled on Mobile)
 const monoliths = document.querySelectorAll('.monolith-wrapper');
 
 monoliths.forEach(wrapper => {
     const card = wrapper.querySelector('.monolith-card');
     
-    wrapper.addEventListener('mousemove', (e) => {
-        const rect = wrapper.getBoundingClientRect();
-        // Calculate mouse position relative to the center of the card
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        // Calculate rotation (max 12 degrees for a premium feel)
-        const rotateX = ((y - centerY) / centerY) * -12; 
-        const rotateY = ((x - centerX) / centerX) * 12;
+    // Only run the 3D math if the screen is wider than 900px
+    if (window.innerWidth > 900) {
+        wrapper.addEventListener('mousemove', (e) => {
+            const rect = wrapper.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = ((y - centerY) / centerY) * -12; 
+            const rotateY = ((x - centerX) / centerX) * 12;
 
-        gsap.to(card, {
-            rotateX: rotateX,
-            rotateY: rotateY,
-            duration: 0.4,
-            ease: "power1.out" // Snappy response to mouse movement
+            gsap.to(card, {
+                rotateX: rotateX,
+                rotateY: rotateY,
+                duration: 0.4,
+                ease: "power1.out"
+            });
         });
-    });
 
-    // Snap back to flat when mouse leaves
-    wrapper.addEventListener('mouseleave', () => {
-        gsap.to(card, {
-            rotateX: 0,
-            rotateY: 0,
-            duration: 1,
-            ease: "elastic.out(1, 0.5)" // Gives it a slight satisfying "bounce" back to place
+        wrapper.addEventListener('mouseleave', () => {
+            gsap.to(card, {
+                rotateX: 0,
+                rotateY: 0,
+                duration: 1,
+                ease: "elastic.out(1, 0.5)"
+            });
         });
-    });
+    }
 });
 
 // 2. Scroll stagger entrance
