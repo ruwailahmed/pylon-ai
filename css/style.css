@@ -1,0 +1,842 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --deep-bg: #050505;
+    --surface-glass: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --text-main: #E2E2E2;
+    --text-muted: #8A8A9B;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--deep-bg);
+    color: var(--text-main);
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* 1. The Immersive Hero Background */
+.mesh-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background-image: 
+        linear-gradient(rgba(5, 5, 5, 0.6), rgba(5, 5, 5, 0.9)), /* Dark overlay */
+        url('../assets/images/hero-bg-titanium.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Gives a premium parallax feel when scrolling */
+}
+
+/* 2. Apple-Style Floating Glass Pill Nav */
+.glass-pill-nav {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+    border-right: 1px solid rgba(255, 255, 255, 0.02);
+    border-radius: 100px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(255,255,255,0.02);
+    z-index: 100;
+}
+
+.logo { font-weight: 800; font-size: 1rem; letter-spacing: 1px; }
+
+.nav-links { display: flex; gap: 24px; }
+.nav-links a { color: #A0A0B0; text-decoration: none; font-size: 0.9rem; font-weight: 400; transition: color 0.3s; }
+.nav-links a:hover { color: #fff; }
+
+.nav-cta-btn {
+    background: rgba(242, 200, 0, 0.1);
+    color: var(--electric-yellow);
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 1px solid rgba(242, 200, 0, 0.3);
+    transition: all 0.3s;
+}
+.nav-cta-btn:hover { background: var(--electric-yellow); color: var(--deep-navy); }
+
+/* 3. Hero Section - Massive Typography & No Bounds */
+.hero-immersive {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 5%;
+}
+
+.glass-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #A0A0B0;
+    margin-bottom: 30px;
+    backdrop-filter: blur(10px);
+}
+
+.pulse-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--text-main);
+    box-shadow: 0 0 10px rgba(226, 226, 226, 0.4);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+
+.gradient-text {
+    font-size: 5.5rem;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin-bottom: 24px;
+    background: linear-gradient(180deg, #FFFFFF 0%, #8A8A9B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtext {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: #8A8A9B;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    line-height: 1.6;
+}
+
+/* Premium Primary Button */
+.glass-btn-primary {
+    background: linear-gradient(135deg, #E2E2E2 0%, #8A8A9B 100%);
+    color: #050505;
+    border: none;
+    padding: 20px 40px;
+    border-radius: 100px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 15px 30px rgba(255, 255, 255, 0.05), inset 0 2px 0 rgba(255,255,255,0.8);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.glass-btn-primary:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1), inset 0 2px 0 rgba(255,255,255,1);
+}
+
+/* Floating UI Cards for Depth Simulation */
+.floating-ui {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 20px;
+    pointer-events: none;
+}
+
+.card-1 { top: 25%; left: 10%; transform: rotate(-5deg); }
+.card-2 { bottom: 25%; right: 10%; transform: rotate(3deg); }
+
+.ui-header { font-size: 0.75rem; color: #8A8A9B; text-transform: uppercase; margin-bottom: 8px; }
+.ui-stat { font-size: 2rem; font-weight: 800; color: var(--text-main); }
+.ui-dots { display: flex; gap: 4px; }
+.ui-dots span { width: 8px; height: 8px; border-radius: 50%; background: #A0A0B0; }
+.ui-dots span:first-child { background: var(--text-main); }
+
+/* --- Process Section --- */
+.process-section {
+    padding: 150px 5%;
+    background-color: transparent; /* Lets the mesh background show through slightly */
+    position: relative;
+    z-index: 10;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 3.5rem;
+    margin-bottom: 16px;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    margin-bottom: 80px;
+    font-weight: 300;
+}
+
+.timeline-wrapper {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-left: 50px; /* Space for the line */
+}
+
+.timeline-track {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.05); /* Dim un-scrolled track */
+}
+
+.timeline-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0%; /* JS will animate this to 100% on scroll */
+    background: linear-gradient(180deg, transparent, var(--text-main), transparent);
+    box-shadow: 0 0 15px rgba(226, 226, 226, 0.4);
+}
+
+.process-step {
+    position: relative;
+    margin-bottom: 60px;
+    opacity: 0; /* JS fade in */
+    transform: translateY(40px); /* JS slide up */
+}
+
+.process-step:last-child {
+    margin-bottom: 0;
+}
+
+.step-dot {
+    position: absolute;
+    left: -54px; /* Perfectly centers dot over the track */
+    top: 30px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--deep-bg);
+    border: 2px solid rgba(255,255,255,0.2);
+    transition: all 0.4s ease;
+    z-index: 2;
+}
+
+/* Activated state controlled by JS */
+.process-step.active .step-dot {
+    border-color: var(--text-main);
+    background: var(--text-main);
+    box-shadow: 0 0 15px rgba(226, 226, 226, 0.8);
+}
+
+.glass-card {
+    background: var(--surface-glass);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-top: 1px solid var(--glass-border);
+    border-left: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 40px;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), background 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateX(10px);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.step-number {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+}
+
+.step-content h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 12px;
+}
+
+.step-content p {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+/* --- 3D Monolith Grid --- */
+.services-section { padding: 100px 5%; position: relative; z-index: 10; }
+.section-header { text-align: center; margin-bottom: 80px; }
+
+.monolith-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* The wrapper creates the 3D space */
+.monolith-wrapper {
+    perspective: 1200px; /* Crucial for the 3D effect */
+    opacity: 0;
+    transform: translateY(40px);
+}
+.span-2 { grid-column: span 2; }
+
+/* The actual moving card */
+.monolith-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 15, 18, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    transform-style: preserve-3d; /* Allows inner elements to pop out */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    overflow: hidden;
+}
+
+/* Background Cyber-Grid Pattern */
+.monolith-bg-pattern {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+    transform: translateZ(-20px); /* Pushed into the background */
+    opacity: 0.5;
+}
+
+/* Sweeping Edge Light Effect */
+.monolith-border-glow {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 24px;
+    padding: 2px; /* Thickness of the glowing border */
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent 40%, rgba(226, 226, 226, 0.8));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.3;
+    transition: opacity 0.5s ease;
+}
+
+.monolith-card:hover .monolith-border-glow {
+    opacity: 1;
+    /* Optional: add an animation to rotate the gradient here */
+}
+
+/* Content floating above the card */
+.monolith-content {
+    position: relative;
+    padding: 40px;
+    transform: translateZ(60px); /* Physically floats 60px above the glass */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    pointer-events: none; /* Let mouse interact with the wrapper */
+}
+
+.service-icon {
+    width: 50px; height: 50px;
+    border-radius: 14px;
+    background: rgba(226, 226, 226, 0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px;
+    color: var(--text-main);
+}
+
+.monolith-content h3 { font-size: 1.6rem; font-weight: 600; margin-bottom: 16px; color: var(--text-main); }
+.monolith-content p { font-size: 1.05rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 30px; }
+
+.card-link {
+    margin-top: auto;
+    display: inline-block;
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    pointer-events: auto; /* Re-enable clicking for the link */
+}
+
+/* Custom Monolith Backgrounds */
+.card-agents {
+    background-image: 
+        linear-gradient(rgba(15, 15, 18, 0.85), rgba(15, 15, 18, 0.95)), 
+        url('../assets/images/service-agents.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.card-data {
+    background-image: 
+        linear-gradient(rgba(15, 15, 18, 0.85), rgba(15, 15, 18, 0.95)), 
+        url('../assets/images/data-pipeline.png');
+    background-size: cover;
+    background-position: center;
+}
+
+@media (max-width: 900px) {
+    .monolith-grid { grid-template-columns: 1fr; }
+    .span-2 { grid-column: span 1; }
+    .monolith-wrapper { perspective: none; } /* Disable 3D on mobile for performance */
+    .monolith-card { transform: none !important; }
+}
+
+/* --- ClawdBot Sticky Section --- */
+.clawdbot-section {
+    position: relative;
+    z-index: 10;
+    padding: 0 5%;
+    margin-top: 100px;
+    background: linear-gradient(180deg, transparent, rgba(15, 15, 18, 0.8), transparent);
+}
+
+.sticky-container {
+    display: flex;
+    align-items: flex-start;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 5%;
+}
+
+/* Left Panel - The Pinned 3D Visual */
+.bot-visual-panel {
+    position: sticky;
+    top: 15vh; /* Locks it 15% from the top of the viewport */
+    width: 45%;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid var(--glass-border);
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+/* AI Core Orb Design */
+.bot-core-wrapper {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bot-core-orb {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--text-main), #8A8A9B);
+    box-shadow: 0 0 50px rgba(226, 226, 226, 0.4), inset 0 0 20px #000;
+    z-index: 10;
+}
+
+/* Rotating Titanium Rings */
+.bot-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(226, 226, 226, 0.2);
+    border-top: 1px solid var(--text-main);
+}
+
+.ring-1 { width: 200px; height: 200px; animation: spin-reverse 8s linear infinite; }
+.ring-2 { width: 260px; height: 260px; animation: spin 12s linear infinite; }
+.ring-3 { width: 320px; height: 320px; animation: spin-reverse 16s linear infinite; opacity: 0.5; }
+
+@keyframes spin { 100% { transform: rotate(360deg); } }
+@keyframes spin-reverse { 100% { transform: rotate(-360deg); } }
+
+.visual-label {
+    position: absolute;
+    bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: var(--text-main);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Right Panel - Scrolling Content */
+.bot-content-panel {
+    width: 50%;
+    padding-top: 15vh; /* Aligns first item with the pinned visual */
+    padding-bottom: 30vh; /* Gives room to scroll past the last item */
+}
+
+.bot-intro { margin-bottom: 80px; }
+.bot-intro h2 { font-size: 4rem; margin-bottom: 16px; }
+
+.feature-scroll-list {
+    display: flex;
+    flex-direction: column;
+    gap: 120px; /* Massive gap to force scrolling */
+}
+
+.bot-feature-item {
+    opacity: 0.3; /* JS will change this to 1 when in view */
+    transform: scale(0.95);
+    transition: all 0.5s ease;
+}
+
+.feature-number {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 8px;
+    display: inline-block;
+}
+
+.bot-feature-item h3 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 24px;
+    line-height: 1.2;
+}
+
+.bot-feature-item p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-weight: 300;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1000px) {
+    .sticky-container { flex-direction: column; }
+    .bot-visual-panel {
+        position: relative;
+        width: 100%;
+        height: 400px;
+        top: 0;
+        margin-bottom: 60px;
+    }
+    .bot-content-panel { width: 100%; padding: 0; }
+    .feature-scroll-list { gap: 60px; }
+    .bot-feature-item { opacity: 1; transform: scale(1); }
+}
+
+/* --- Impact & Metrics Section --- */
+.impact-section {
+    padding: 120px 5%;
+    position: relative;
+    z-index: 10;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.metric-card {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s ease, border-color 0.4s ease;
+    border-top: 1px solid rgba(226, 226, 226, 0.1);
+}
+
+.metric-card:hover {
+    transform: translateY(-10px);
+    border-top: 1px solid rgba(226, 226, 226, 0.4);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.metric-industry {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.metric-number {
+    font-size: 4.5rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, var(--text-main) 0%, #666 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
+}
+
+.metric-highlight {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 24px;
+}
+
+.metric-divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, var(--glass-border), transparent);
+    margin-bottom: 24px;
+}
+
+.metric-details p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 16px;
+    font-weight: 300;
+}
+
+.metric-details strong {
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+/* Tech Stack Tags */
+.tech-stack-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 16px;
+}
+
+.tech-stack-tags span {
+    font-size: 0.75rem;
+    padding: 6px 12px;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #A0A0B0;
+    letter-spacing: 0.5px;
+}
+
+@media (max-width: 1000px) {
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- Pre-Footer CTA Section --- */
+.cta-section {
+    padding: 150px 5% 100px 5%;
+    position: relative;
+    z-index: 10;
+    text-align: center;
+}
+
+.cta-container {
+    padding: 80px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(226, 226, 226, 0.2);
+}
+
+/* Subtle inner glow for the CTA box */
+.cta-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(226, 226, 226, 0.05), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.massive-cta-text {
+    font-size: 4.5rem;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+}
+
+.cta-subtext {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    line-height: 1.6;
+    font-weight: 300;
+    position: relative;
+    z-index: 1;
+}
+
+/* Upscaled Button for the final push */
+.massive-btn {
+    display: inline-block;
+    padding: 24px 48px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    position: relative;
+    z-index: 1;
+}
+
+/* --- Corporate Footer --- */
+.site-footer {
+    background: #030303; /* Slightly darker than the body bg to ground the page */
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 80px 5% 40px 5%;
+    position: relative;
+    z-index: 10;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 60px;
+}
+
+.footer-brand .logo {
+    color: var(--text-main);
+    margin-bottom: 20px;
+}
+
+.footer-brand p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    max-width: 400px;
+}
+
+.footer-links h4, .footer-contact h4 {
+    color: var(--text-main);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-links a {
+    display: block;
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--text-main);
+}
+
+.footer-contact p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+}
+
+.footer-email {
+    display: inline-block;
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 0.95rem;
+    margin-top: 12px;
+    border-bottom: 1px solid rgba(226, 226, 226, 0.3);
+    padding-bottom: 2px;
+    transition: border-color 0.3s;
+}
+
+.footer-email:hover {
+    border-color: var(--text-main);
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.footer-domains a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-domains a:hover {
+    color: var(--text-main);
+}
+
+.footer-domains .divider {
+    margin: 0 10px;
+    color: rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive Footer */
+@media (max-width: 900px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .footer-bottom {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    .massive-cta-text {
+        font-size: 3rem;
+    }
+}
