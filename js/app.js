@@ -176,6 +176,125 @@ ScrollTrigger.create({
     }
 });
 
+// --- Voice AI Page: Dashboard Typewriter Effect ---
+if(document.querySelector('.intercept-dashboard')) {
+    // Reveal the dashboard with a smooth float in
+    gsap.from(".intercept-dashboard", {
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+    });
+
+    // Make the AI text type out
+    const typingText = document.querySelector('.typing-text');
+    const fullText = typingText.innerHTML;
+    typingText.innerHTML = "";
+    typingText.style.opacity = 1;
+
+    let charIndex = 0;
+    function typeWriter() {
+        if (charIndex < fullText.length) {
+            typingText.innerHTML += fullText.charAt(charIndex);
+            charIndex++;
+            // Randomize typing speed slightly for realism (between 10ms and 40ms)
+            setTimeout(typeWriter, Math.random() * 30 + 10);
+        }
+    }
+
+    // Start typing after a brief delay (simulating the AI "thinking")
+    setTimeout(typeWriter, 1200);
+}
+
+// Hover Logic for the Accordion
+const panels = document.querySelectorAll('.fluid-panel');
+panels.forEach(panel => {
+    panel.addEventListener('mouseenter', () => {
+        panels.forEach(p => p.classList.remove('active'));
+        panel.classList.add('active');
+    });
+});
+
+// --- Voice AI Page: Telecom Pipeline Animation ---
+if(document.querySelector('.telecom-pipeline')) {
+    const pulse = document.querySelector('.telecom-pulse');
+    const steps = document.querySelectorAll('.flow-step');
+
+    // Shoot the pulse down the line
+    gsap.to(pulse, {
+        opacity: 1,
+        y: () => document.querySelector('.telecom-line').offsetHeight - 120,
+        ease: "none",
+        scrollTrigger: {
+            trigger: ".telecom-pipeline",
+            start: "top center",
+            end: "bottom center",
+            scrub: 0.5
+        }
+    });
+
+    // Light up nodes and fade in cards
+    steps.forEach(step => {
+        ScrollTrigger.create({
+            trigger: step,
+            start: "top 60%", 
+            onEnter: () => {
+                step.classList.add('active');
+                gsap.to(step, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" });
+            },
+            onLeaveBack: () => {
+                step.classList.remove('active');
+                gsap.to(step, { opacity: 0, y: 30, duration: 0.4 });
+            }
+        });
+    });
+}
+
+// --- CRM Page: Pipeline Scrub Animation ---
+if(document.querySelector('.pipeline-container')) {
+    const beam = document.querySelector('.pipeline-beam');
+    const nodes = document.querySelectorAll('.pipeline-node');
+
+    // 1. Move the glowing beam down the track
+    gsap.to(beam, {
+        opacity: 1,
+        y: () => document.querySelector('.pipeline-track').offsetHeight - 100, // Moves to bottom
+        ease: "none",
+        scrollTrigger: {
+            trigger: ".pipeline-container",
+            start: "top center",
+            end: "bottom center",
+            scrub: 1
+        }
+    });
+
+    // 2. Light up nodes as the beam passes them
+    nodes.forEach(node => {
+        ScrollTrigger.create({
+            trigger: node,
+            start: "top 60%", // Triggers slightly before center
+            onEnter: () => {
+                node.classList.add('active');
+                gsap.to(node, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" });
+            },
+            onLeaveBack: () => {
+                node.classList.remove('active');
+                gsap.to(node, { opacity: 0, y: 30, duration: 0.4 });
+            }
+        });
+    });
+
+    // 3. Hero 3D Stack Parallax
+    const stack = document.querySelector('.data-stack');
+    document.addEventListener('mousemove', (e) => {
+        if(window.innerWidth > 900 && stack) {
+            const x = (e.clientX / window.innerWidth - 0.5) * 20;
+            const y = (e.clientY / window.innerHeight - 0.5) * 20;
+            gsap.to(stack, { rotateX: 60 - y, rotateZ: -45 + x, duration: 1 });
+        }
+    });
+}
+
 // CTA Section Reveal
 ScrollTrigger.create({
     trigger: ".cta-section",
@@ -187,3 +306,90 @@ ScrollTrigger.create({
         );
     }
 });
+
+// --- OpenClaw Page: Swarm Data Flow Animation ---
+if(document.querySelector('.swarm-grid')) {
+    const particles = document.querySelectorAll('.stream-particle');
+    
+    // Create an infinite loop of data shooting from the core to the agents
+    particles.forEach((particle, index) => {
+        gsap.to(particle, {
+            y: 80,
+            opacity: 1,
+            duration: 1.5,
+            ease: "power2.in",
+            repeat: -1,
+            delay: index * 0.4,
+            keyframes: {
+                "0%": { opacity: 0, y: 0 },
+                "20%": { opacity: 1 },
+                "80%": { opacity: 1 },
+                "100%": { opacity: 0, y: 120 }
+            }
+        });
+    });
+
+    // Pulse the core node
+    gsap.to(".core-node", {
+        boxShadow: "0 0 40px rgba(242, 200, 0, 0.3)",
+        borderColor: "rgba(242, 200, 0, 0.8)",
+        duration: 2,
+        yoyo: true,
+        repeat: -1,
+        ease: "sine.inOut"
+    });
+}
+
+// OpenClaw Routing SVG Animation
+if(document.querySelector('.matrix-lines')) {
+    const lines = document.querySelectorAll('.route-line');
+    
+    // Animate the actual lines drawing themselves
+    lines.forEach(line => {
+        const length = line.getTotalLength();
+        line.style.strokeDasharray = length;
+        line.style.strokeDashoffset = length;
+        
+        gsap.to(line, {
+            strokeDashoffset: 0,
+            duration: 2,
+            ease: "power2.inOut",
+            scrollTrigger: {
+                trigger: ".routing-matrix-section",
+                start: "top center"
+            }
+        });
+    });
+
+    // Make the glowing data packets feel alive by animating agent text statuses
+    const statusTexts = ["Processing NLP...", "Retrieving context...", "Executing Python...", "Output generated."];
+    const agentStatuses = document.querySelectorAll('.agent-status');
+    
+    setInterval(() => {
+        agentStatuses.forEach(status => {
+            if(Math.random() > 0.5) {
+                status.innerText = statusTexts[Math.floor(Math.random() * statusTexts.length)];
+                status.style.color = "#00FFA3";
+                setTimeout(() => { status.style.color = "#728A81"; }, 500);
+            }
+        });
+    }, 2000);
+}
+
+// --- OpenClaw Page: Interactive Console Logic ---
+const consoleTabs = document.querySelectorAll('.console-tab');
+const consoleModules = document.querySelectorAll('.viewport-module');
+
+if (consoleTabs.length > 0) {
+    consoleTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            consoleTabs.forEach(t => t.classList.remove('active'));
+            consoleModules.forEach(m => m.classList.remove('active'));
+
+            tab.classList.add('active');
+            const targetId = tab.getAttribute('data-target');
+            const target = document.getElementById(targetId);
+            if (target) target.classList.add('active');
+        });
+    });
+}

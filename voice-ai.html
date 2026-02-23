@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice AI Receptionists | Pylon AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body class="service-page">
+    <div class="mesh-bg"></div>
+
+    <nav class="glass-pill-nav">
+        <a href="index.html" class="logo-link">
+            <img src="assets/images/logo.svg" alt="Pylon AI Logo" class="nav-logo-img">
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Consulting</a>
+            <a href="crm-ai.html">CRM &amp; Systems</a>
+            <a href="voice-ai.html" style="color: #fff;">Voice AI</a>
+            <a href="openclaw.html">OpenClaw</a>
+        </div>
+        <a href="contact.html" class="nav-cta-btn">Book a Call</a>
+    </nav>
+
+    <header class="service-hero">
+        <div class="hero-container">
+            <div class="service-hero-text">
+                <div class="glass-badge"><span class="pulse-dot"></span> Zero-Latency Voice</div>
+                <h1 class="gradient-text">Never Miss Another High-Ticket Call.</h1>
+                <p class="hero-subtext">Deploy an autonomous voice agent that handles 10,000 concurrent calls, sounds entirely human, handles complex objections, and books appointments 24/7/365.</p>
+                <a href="contact.html" class="glass-btn-primary">Book a Live Demo</a>
+            </div>
+            
+            <div class="service-hero-visual">
+                <div class="intercept-dashboard glass-card">
+                    <div class="dash-header">
+                        <div class="status-indicator"><span class="pulse-dot"></span> Call Intercepted: +1 (555) 019-2834</div>
+                        <div class="intent-tag">Intent: Booking / High Priority</div>
+                    </div>
+                    <div class="transcript-window">
+                        <div class="chat-line human"><strong>Caller:</strong> Hi, I'm looking to book a consultation for next Tuesday. Do you have availability?</div>
+                        <div class="chat-line ai"><strong>Pylon Agent:</strong> <span class="typing-text">I can absolutely help with that. Let me check the calendar. I have a slot at 10:00 AM or 2:30 PM on Tuesday. Which works best for you?</span></div>
+                    </div>
+                    <div class="api-status-bar">
+                        <div class="api-node active"><span>✓</span> Calendar API</div>
+                        <div class="api-node active"><span>✓</span> CRM Sync</div>
+                        <div class="api-node waiting"><span class="spinner"></span> Stripe Auth</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="fluid-architecture-section">
+        <div class="container">
+            <div class="section-header text-center" style="margin-bottom: 40px;">
+                <h2 class="gradient-text">Beyond a "Chatbot".</h2>
+                <p class="section-subtitle">We engineer robust telecom infrastructure, not just a script.</p>
+            </div>
+
+            <div class="accordion-container">
+                
+                <div class="fluid-panel active">
+                    <div class="panel-bg" style="background-image: linear-gradient(rgba(10,15,13,0.9), rgba(10,15,13,0.95)), url('assets/images/data-pipeline.png');"></div>
+                    <div class="panel-header">
+                        <span class="panel-num">01</span>
+                        <h3>&lt;11ms Latency</h3>
+                    </div>
+                    <div class="panel-content">
+                        <p>Delay kills trust. Our voice agents are deployed on edge servers directly adjacent to SIP trunks. This ensures human-level conversational overlap. No awkward pauses. No robotic buffering. Pure, instant audio streaming.</p>
+                        <div class="tech-specs">
+                            <span>Edge Computing</span>
+                            <span>SIP Trunking</span>
+                            <span>WebRTC</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fluid-panel">
+                    <div class="panel-bg" style="background-image: linear-gradient(rgba(15,15,18,0.9), rgba(15,15,18,0.95)), url('assets/images/service-agents.png');"></div>
+                    <div class="panel-header">
+                        <span class="panel-num">02</span>
+                        <h3>Dynamic Logic</h3>
+                    </div>
+                    <div class="panel-content">
+                        <p>If a lead asks a complex question about pricing or competitors, the agent doesn't give a generic answer. It executes a sub-100ms vector database query to retrieve your proprietary knowledge base and delivers a factual, persuasive rebuttal.</p>
+                        <div class="tech-specs">
+                            <span>Vector RAG</span>
+                            <span>Semantic Search</span>
+                            <span>Custom LLMs</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fluid-panel">
+                    <div class="panel-bg" style="background-image: linear-gradient(rgba(15,12,5,0.9), rgba(15,12,5,0.95)), url('assets/images/hero-bg-titanium.png');"></div>
+                    <div class="panel-header">
+                        <span class="panel-num">03</span>
+                        <h3>Live Execution</h3>
+                    </div>
+                    <div class="panel-content">
+                        <p>The agent doesn't just talk; it operates your software. It actively listens for intent and physically triggers secure webhooks to charge credit cards via Stripe, update Salesforce records, or dispatch confirmation SMS texts while still on the line.</p>
+                        <div class="tech-specs">
+                            <span>Webhook Triggers</span>
+                            <span>OAuth Security</span>
+                            <span>REST APIs</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-container glass-card">
+                <div class="cta-glow"></div>
+                <h2 class="gradient-text massive-cta-text">Stop Paying for Missed Calls.</h2>
+                <p class="cta-subtext">Book a technical breakdown. We will map out exactly how a Voice AI agent integrates with your current phone lines and CRM.</p>
+                <a href="contact.html" class="glass-btn-primary massive-btn">Build Your Custom Agent</a>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
+
