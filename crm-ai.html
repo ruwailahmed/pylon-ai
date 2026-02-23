@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
+
 <body class="service-page">
     <div class="mesh-bg"></div>
 
@@ -23,14 +25,33 @@
             <a href="openclaw.html">OpenClaw</a>
         </div>
         <a href="contact.html" class="nav-cta-btn">Book a Call</a>
+
+        <!-- Mobile Hamburger Button -->
+        <div class="mobile-menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </nav>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay">
+        <div class="mobile-nav-links">
+            <a href="index.html">Consulting</a>
+            <a href="crm-ai.html" style="color: #fff;">CRM &amp; Systems</a>
+            <a href="voice-ai.html">Voice AI</a>
+            <a href="openclaw.html">OpenClaw</a>
+            <a href="contact.html" style="color: var(--electric-yellow);">Book a Call</a>
+        </div>
+    </div>
 
     <header class="service-hero">
         <div class="hero-container">
             <div class="service-hero-text">
                 <div class="glass-badge"><span class="pulse-dot"></span> Revenue Operations</div>
                 <h1 class="gradient-text">Turn Your CRM Into An Autonomous Engine.</h1>
-                <p class="hero-subtext">Stop losing leads to manual data entry and disconnected software. We build intelligent pipelines that capture, enrich, and follow up with leads 24/7.</p>
+                <p class="hero-subtext">Stop losing leads to manual data entry and disconnected software. We build
+                    intelligent pipelines that capture, enrich, and follow up with leads 24/7.</p>
                 <a href="contact.html" class="glass-btn-primary">Audit My CRM System</a>
             </div>
             <div class="service-hero-visual">
@@ -57,7 +78,10 @@
                 </ul>
             </div>
             <div class="comp-connector">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--electric-yellow)" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--electric-yellow)"
+                    stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
             </div>
             <div class="comp-card glass-card good-state">
                 <div class="comp-header text-electric">The Pylon AI Framework</div>
@@ -75,7 +99,7 @@
         <div class="container">
             <h2 class="section-title gradient-text text-center">Architected for Scale.</h2>
             <p class="section-subtitle text-center">How our CRM integrations physically operate.</p>
-            
+
             <div class="pipeline-container">
                 <div class="pipeline-track">
                     <div class="pipeline-beam"></div>
@@ -85,7 +109,8 @@
                     <div class="node-point"></div>
                     <div class="node-content glass-card">
                         <h3>01. Intelligent Lead Routing</h3>
-                        <p>When a lead enters your ecosystem, our AI instantly reads their data, scores their buying intent, and routes them to the exact right sales closer based on historical win-rates.</p>
+                        <p>When a lead enters your ecosystem, our AI instantly reads their data, scores their buying
+                            intent, and routes them to the exact right sales closer based on historical win-rates.</p>
                     </div>
                 </div>
 
@@ -93,7 +118,9 @@
                     <div class="node-point"></div>
                     <div class="node-content glass-card">
                         <h3>02. Autonomous Follow-Ups</h3>
-                        <p>If a lead stalls, the system doesn't wait for a human. It triggers a highly personalized, context-aware email or SMS sequence powered by custom LLMs, pulling data directly from their previous interactions.</p>
+                        <p>If a lead stalls, the system doesn't wait for a human. It triggers a highly personalized,
+                            context-aware email or SMS sequence powered by custom LLMs, pulling data directly from their
+                            previous interactions.</p>
                     </div>
                 </div>
 
@@ -101,7 +128,9 @@
                     <div class="node-point"></div>
                     <div class="node-content glass-card">
                         <h3>03. Data Cleansing &amp; Deduplication</h3>
-                        <p>A CRM is only as good as its data. Our background agents constantly scrub your database, merging duplicate contacts, updating outdated job titles via LinkedIn APIs, and fixing formatting errors silently.</p>
+                        <p>A CRM is only as good as its data. Our background agents constantly scrub your database,
+                            merging duplicate contacts, updating outdated job titles via LinkedIn APIs, and fixing
+                            formatting errors silently.</p>
                     </div>
                 </div>
             </div>
@@ -121,4 +150,5 @@
 
     <script src="js/app.js"></script>
 </body>
+
 </html>

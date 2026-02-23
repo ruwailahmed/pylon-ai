@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js"></script>
 </head>
+
 <body class="service-page">
     <div class="mesh-bg"></div>
 
@@ -24,13 +26,36 @@
             <a href="openclaw.html" style="color: #fff;">OpenClaw</a>
         </div>
         <a href="contact.html" class="nav-cta-btn">Book a Call</a>
+
+        <!-- Mobile Hamburger Button -->
+        <div class="mobile-menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </nav>
 
-    <header class="service-hero" style="text-align: center; display: flex; flex-direction: column; justify-content: center;">
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay">
+        <div class="mobile-nav-links">
+            <a href="index.html">Consulting</a>
+            <a href="crm-ai.html">CRM &amp; Systems</a>
+            <a href="voice-ai.html">Voice AI</a>
+            <a href="openclaw.html" style="color: #fff;">OpenClaw</a>
+            <a href="contact.html" style="color: var(--electric-yellow);">Book a Call</a>
+        </div>
+    </div>
+
+    <header class="service-hero"
+        style="text-align: center; display: flex; flex-direction: column; justify-content: center;">
         <div class="container" style="max-width: 900px; margin: 0 auto;">
-            <div class="glass-badge mx-auto mb-4" style="margin: 0 auto 20px auto; width: fit-content;"><span class="pulse-dot"></span> Open-Source AI Infrastructure</div>
-            <h1 class="gradient-text" style="font-size: 4.5rem; line-height: 1.1; margin-bottom: 24px;">Own Your AI.<br>Don't Rent It.</h1>
-            <p class="hero-subtext" style="font-size: 1.2rem; margin: 0 auto 40px auto; max-width: 700px;">Stop paying massive monthly SaaS fees for rigid AI wrappers. We deploy, secure, and optimize enterprise-grade OpenClaw multi-agent swarms directly on your own servers.</p>
+            <div class="glass-badge mx-auto mb-4" style="margin: 0 auto 20px auto; width: fit-content;"><span
+                    class="pulse-dot"></span> Open-Source AI Infrastructure</div>
+            <h1 class="gradient-text" style="font-size: 4.5rem; line-height: 1.1; margin-bottom: 24px;">Own Your
+                AI.<br>Don't Rent It.</h1>
+            <p class="hero-subtext" style="font-size: 1.2rem; margin: 0 auto 40px auto; max-width: 700px;">Stop paying
+                massive monthly SaaS fees for rigid AI wrappers. We deploy, secure, and optimize enterprise-grade
+                OpenClaw multi-agent swarms directly on your own servers.</p>
             <a href="contact.html" class="glass-btn-primary massive-btn">Architect Your Swarm</a>
         </div>
     </header>
@@ -38,24 +63,29 @@
     <section class="routing-matrix-section">
         <div class="container">
             <h2 class="gradient-text text-center">Swarm Architecture.</h2>
-            <p class="section-subtitle text-center" style="margin-bottom: 60px;">Live routing schema: Complex tasks are instantly divided among specialized agents.</p>
+            <p class="section-subtitle text-center" style="margin-bottom: 60px;">Live routing schema: Complex tasks are
+                instantly divided among specialized agents.</p>
 
             <div class="matrix-container">
                 <svg class="matrix-lines" viewBox="0 0 1000 400" preserveAspectRatio="none">
                     <path class="route-line" id="path1" d="M 200 200 C 350 200, 400 80, 600 80" />
                     <path class="route-line" id="path2" d="M 200 200 C 350 200, 450 200, 600 200" />
                     <path class="route-line" id="path3" d="M 200 200 C 350 200, 400 320, 600 320" />
-                    
-                    <circle class="data-packet" id="packet1" r="4" fill="#F2C800" filter="drop-shadow(0 0 8px #F2C800)" />
-                    <circle class="data-packet" id="packet2" r="4" fill="#F2C800" filter="drop-shadow(0 0 8px #F2C800)" />
-                    <circle class="data-packet" id="packet3" r="4" fill="#F2C800" filter="drop-shadow(0 0 8px #F2C800)" />
+
+                    <circle class="data-packet" id="packet1" r="4" fill="#F2C800"
+                        filter="drop-shadow(0 0 8px #F2C800)" />
+                    <circle class="data-packet" id="packet2" r="4" fill="#F2C800"
+                        filter="drop-shadow(0 0 8px #F2C800)" />
+                    <circle class="data-packet" id="packet3" r="4" fill="#F2C800"
+                        filter="drop-shadow(0 0 8px #F2C800)" />
                 </svg>
 
                 <div class="matrix-col input-col">
                     <div class="terminal-block glass-card">
                         <div class="terminal-header">User Input</div>
                         <div class="terminal-body">
-                            <span style="color: #00FFA3;">&gt; prompt:</span> "Analyze competitor pricing and write an aggressive rebuttal campaign."
+                            <span style="color: #00FFA3;">&gt; prompt:</span> "Analyze competitor pricing and write an
+                            aggressive rebuttal campaign."
                         </div>
                     </div>
                 </div>
@@ -72,7 +102,7 @@
                         <div class="agent-header">Agent 1: Research</div>
                         <div class="agent-status typing-text-fast">Scraping API endpoints...</div>
                     </div>
-                    
+
                     <div class="agent-block glass-card">
                         <div class="agent-header">Agent 2: Copywriter</div>
                         <div class="agent-status typing-text-fast">Awaiting data payload...</div>
@@ -97,7 +127,7 @@
 
             <div class="console-wrapper glass-card">
                 <div class="console-sidebar">
-                    
+
                     <div class="console-tab active" data-target="module-metal">
                         <div class="tab-indicator"></div>
                         <div class="tab-content">
@@ -133,14 +163,16 @@
                 </div>
 
                 <div class="console-viewport">
-                    
+
                     <div class="viewport-module active" id="module-metal">
                         <div class="module-header">
                             <h4>Security &amp; Sovereignty</h4>
                             <span class="status-badge"><span class="pulse-dot green"></span> Secure Cluster</span>
                         </div>
-                        <p class="module-desc">We deploy your OpenClaw infrastructure on private AWS/GCP clusters. Total data sovereignty ensures your proprietary company data never leaks into public AI training models.</p>
-                        
+                        <p class="module-desc">We deploy your OpenClaw infrastructure on private AWS/GCP clusters. Total
+                            data sovereignty ensures your proprietary company data never leaks into public AI training
+                            models.</p>
+
                         <div class="mock-server-rack">
                             <div class="server-blade"><span class="led"></span> Node 01: Active [Local]</div>
                             <div class="server-blade"><span class="led"></span> Node 02: Active [Local]</div>
@@ -153,17 +185,19 @@
                             <h4>Cost Optimization</h4>
                             <span class="status-badge"><span class="pulse-dot yellow"></span> Routing Active</span>
                         </div>
-                        <p class="module-desc">Scaling AI is expensive. We build intelligent routers that assign simple tasks to fast, cheap local models while reserving heavy computation for advanced models, cutting API costs by up to 90%.</p>
-                        
+                        <p class="module-desc">Scaling AI is expensive. We build intelligent routers that assign simple
+                            tasks to fast, cheap local models while reserving heavy computation for advanced models,
+                            cutting API costs by up to 90%.</p>
+
                         <div class="routing-visual">
                             <div class="route-path">
-                                <span>Input Data</span> → 
-                                <span class="highlight">Router</span> → 
+                                <span>Input Data</span> →
+                                <span class="highlight">Router</span> →
                                 <span>Llama-3 (Cost: $0.001)</span>
                             </div>
                             <div class="route-path dimmed">
-                                <span>Input Data</span> → 
-                                <span class="highlight">Router</span> → 
+                                <span>Input Data</span> →
+                                <span class="highlight">Router</span> →
                                 <span>GPT-4o (Cost: $0.030)</span>
                             </div>
                         </div>
@@ -174,8 +208,10 @@
                             <h4>API &amp; Integrations</h4>
                             <span class="status-badge"><span class="pulse-dot green"></span> System Authorized</span>
                         </div>
-                        <p class="module-desc">An AI without hands is useless. We build custom Python wrappers allowing your OpenClaw agents to physically query databases, manage files, and execute code within your secure environment.</p>
-                        
+                        <p class="module-desc">An AI without hands is useless. We build custom Python wrappers allowing
+                            your OpenClaw agents to physically query databases, manage files, and execute code within
+                            your secure environment.</p>
+
                         <div class="mock-terminal">
                             <div class="term-header"><span></span><span></span><span></span> agent_executor.py</div>
                             <div class="term-body">
@@ -194,16 +230,22 @@
                             <h4>Autonomous Growth</h4>
                             <span class="status-badge"><span class="pulse-dot green"></span> Agents Deployed</span>
                         </div>
-                        <p class="module-desc">Deploy specialized agent layers designed exclusively for growth. Autonomous agents that monitor ad spend, A/B test creatives, and pause underperforming campaigns while you sleep.</p>
-                        
+                        <p class="module-desc">Deploy specialized agent layers designed exclusively for growth.
+                            Autonomous agents that monitor ad spend, A/B test creatives, and pause underperforming
+                            campaigns while you sleep.</p>
+
                         <div class="mock-metrics">
                             <div class="metric-row">
                                 <span>Campaign A (Human)</span>
-                                <div class="bar-bg"><div class="bar-fill" style="width: 45%;"></div></div>
+                                <div class="bar-bg">
+                                    <div class="bar-fill" style="width: 45%;"></div>
+                                </div>
                             </div>
                             <div class="metric-row">
                                 <span class="highlight">Campaign B (AI Swarm)</span>
-                                <div class="bar-bg"><div class="bar-fill highlight-fill" style="width: 85%;"></div></div>
+                                <div class="bar-bg">
+                                    <div class="bar-fill highlight-fill" style="width: 85%;"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -218,7 +260,8 @@
             <div class="cta-container glass-card">
                 <div class="cta-glow"></div>
                 <h2 class="gradient-text massive-cta-text">Scale Your Intelligence.</h2>
-                <p class="cta-subtext">Book a technical consultation. We will audit your current API usage and map out exactly how much an OpenClaw swarm will save you.</p>
+                <p class="cta-subtext">Book a technical consultation. We will audit your current API usage and map out
+                    exactly how much an OpenClaw swarm will save you.</p>
                 <a href="contact.html" class="glass-btn-primary massive-btn">Schedule Architecture Call</a>
             </div>
         </div>
@@ -226,5 +269,5 @@
 
     <script src="js/app.js"></script>
 </body>
-</html>
 
+</html>

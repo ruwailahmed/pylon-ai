@@ -75,7 +75,7 @@ const monoliths = document.querySelectorAll('.monolith-wrapper');
 
 monoliths.forEach(wrapper => {
     const card = wrapper.querySelector('.monolith-card');
-    
+
     // Only run the 3D math if the screen is wider than 900px
     if (window.innerWidth > 900) {
         wrapper.addEventListener('mousemove', (e) => {
@@ -84,8 +84,8 @@ monoliths.forEach(wrapper => {
             const y = e.clientY - rect.top;
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
-            
-            const rotateX = ((y - centerY) / centerY) * -12; 
+
+            const rotateX = ((y - centerY) / centerY) * -12;
             const rotateY = ((x - centerX) / centerX) * 12;
 
             gsap.to(card, {
@@ -134,7 +134,7 @@ features.forEach((feature, index) => {
         onEnter: () => {
             // Highlight the text
             gsap.to(feature, { opacity: 1, scale: 1, duration: 0.5 });
-            
+
             // Pulse the AI Core orb on the left to react to the scroll
             gsap.to(orb, {
                 scale: 1.2,
@@ -160,10 +160,10 @@ ScrollTrigger.create({
     trigger: ".impact-section",
     start: "top 75%",
     onEnter: () => {
-        gsap.fromTo(".metric-card", 
-            { 
-                y: 50, 
-                opacity: 0 
+        gsap.fromTo(".metric-card",
+            {
+                y: 50,
+                opacity: 0
             },
             {
                 y: 0,
@@ -177,7 +177,7 @@ ScrollTrigger.create({
 });
 
 // --- Voice AI Page: Dashboard Typewriter Effect ---
-if(document.querySelector('.intercept-dashboard')) {
+if (document.querySelector('.intercept-dashboard')) {
     // Reveal the dashboard with a smooth float in
     gsap.from(".intercept-dashboard", {
         y: 50,
@@ -206,17 +206,22 @@ if(document.querySelector('.intercept-dashboard')) {
     setTimeout(typeWriter, 1200);
 }
 
-// Hover Logic for the Accordion
+// --- Voice AI Page: Accordion Touch/Click Logic ---
 const panels = document.querySelectorAll('.fluid-panel');
-panels.forEach(panel => {
-    panel.addEventListener('mouseenter', () => {
-        panels.forEach(p => p.classList.remove('active'));
-        panel.classList.add('active');
+if (panels.length > 0) {
+    panels.forEach(panel => {
+        // Supports both desktop hover and mobile tap
+        ['mouseenter', 'click'].forEach(evt => {
+            panel.addEventListener(evt, () => {
+                panels.forEach(p => p.classList.remove('active'));
+                panel.classList.add('active');
+            });
+        });
     });
-});
+}
 
 // --- Voice AI Page: Telecom Pipeline Animation ---
-if(document.querySelector('.telecom-pipeline')) {
+if (document.querySelector('.telecom-pipeline')) {
     const pulse = document.querySelector('.telecom-pulse');
     const steps = document.querySelectorAll('.flow-step');
 
@@ -237,7 +242,7 @@ if(document.querySelector('.telecom-pipeline')) {
     steps.forEach(step => {
         ScrollTrigger.create({
             trigger: step,
-            start: "top 60%", 
+            start: "top 60%",
             onEnter: () => {
                 step.classList.add('active');
                 gsap.to(step, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" });
@@ -251,7 +256,7 @@ if(document.querySelector('.telecom-pipeline')) {
 }
 
 // --- CRM Page: Pipeline Scrub Animation ---
-if(document.querySelector('.pipeline-container')) {
+if (document.querySelector('.pipeline-container')) {
     const beam = document.querySelector('.pipeline-beam');
     const nodes = document.querySelectorAll('.pipeline-node');
 
@@ -287,7 +292,7 @@ if(document.querySelector('.pipeline-container')) {
     // 3. Hero 3D Stack Parallax
     const stack = document.querySelector('.data-stack');
     document.addEventListener('mousemove', (e) => {
-        if(window.innerWidth > 900 && stack) {
+        if (window.innerWidth > 900 && stack) {
             const x = (e.clientX / window.innerWidth - 0.5) * 20;
             const y = (e.clientY / window.innerHeight - 0.5) * 20;
             gsap.to(stack, { rotateX: 60 - y, rotateZ: -45 + x, duration: 1 });
@@ -300,7 +305,7 @@ ScrollTrigger.create({
     trigger: ".cta-section",
     start: "top 80%",
     onEnter: () => {
-        gsap.fromTo(".cta-container", 
+        gsap.fromTo(".cta-container",
             { scale: 0.9, opacity: 0 },
             { scale: 1, opacity: 1, duration: 1, ease: "back.out(1.5)" }
         );
@@ -308,9 +313,9 @@ ScrollTrigger.create({
 });
 
 // --- OpenClaw Page: Swarm Data Flow Animation ---
-if(document.querySelector('.swarm-grid')) {
+if (document.querySelector('.swarm-grid')) {
     const particles = document.querySelectorAll('.stream-particle');
-    
+
     // Create an infinite loop of data shooting from the core to the agents
     particles.forEach((particle, index) => {
         gsap.to(particle, {
@@ -341,15 +346,15 @@ if(document.querySelector('.swarm-grid')) {
 }
 
 // OpenClaw Routing SVG Animation
-if(document.querySelector('.matrix-lines')) {
+if (document.querySelector('.matrix-lines')) {
     const lines = document.querySelectorAll('.route-line');
-    
+
     // Animate the actual lines drawing themselves
     lines.forEach(line => {
         const length = line.getTotalLength();
         line.style.strokeDasharray = length;
         line.style.strokeDashoffset = length;
-        
+
         gsap.to(line, {
             strokeDashoffset: 0,
             duration: 2,
@@ -364,10 +369,10 @@ if(document.querySelector('.matrix-lines')) {
     // Make the glowing data packets feel alive by animating agent text statuses
     const statusTexts = ["Processing NLP...", "Retrieving context...", "Executing Python...", "Output generated."];
     const agentStatuses = document.querySelectorAll('.agent-status');
-    
+
     setInterval(() => {
         agentStatuses.forEach(status => {
-            if(Math.random() > 0.5) {
+            if (Math.random() > 0.5) {
                 status.innerText = statusTexts[Math.floor(Math.random() * statusTexts.length)];
                 status.style.color = "#00FFA3";
                 setTimeout(() => { status.style.color = "#728A81"; }, 500);
@@ -376,20 +381,56 @@ if(document.querySelector('.matrix-lines')) {
     }, 2000);
 }
 
-// --- OpenClaw Page: Interactive Console Logic ---
+// --- OpenClaw Page: Interactive Console Logic & Mobile Scroll ---
 const consoleTabs = document.querySelectorAll('.console-tab');
 const consoleModules = document.querySelectorAll('.viewport-module');
 
 if (consoleTabs.length > 0) {
     consoleTabs.forEach(tab => {
         tab.addEventListener('click', () => {
+            // Switch active classes
             consoleTabs.forEach(t => t.classList.remove('active'));
             consoleModules.forEach(m => m.classList.remove('active'));
-
             tab.classList.add('active');
             const targetId = tab.getAttribute('data-target');
-            const target = document.getElementById(targetId);
-            if (target) target.classList.add('active');
+            document.getElementById(targetId).classList.add('active');
+
+            // Mobile specific: Scroll the viewport into view when a tab is tapped
+            if (window.innerWidth <= 900) {
+                setTimeout(() => {
+                    const viewport = document.querySelector('.console-viewport');
+                    const offset = viewport.getBoundingClientRect().top + window.scrollY - 80; // Account for sticky nav
+                    window.scrollTo({ top: offset, behavior: 'smooth' });
+                }, 100);
+            }
+        });
+    });
+}
+
+// --- Mobile Navbar Toggle Logic ---
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
+
+if (mobileMenuBtn && mobileNavOverlay) {
+    mobileMenuBtn.addEventListener('click', () => {
+        const isActive = mobileMenuBtn.classList.toggle('active');
+        if (isActive) {
+            mobileNavOverlay.classList.add('active');
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = 'hidden';
+        } else {
+            mobileNavOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Close the menu if any link inside the overlay is clicked
+    const mobileLinks = mobileNavOverlay.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenuBtn.classList.remove('active');
+            mobileNavOverlay.classList.remove('active');
+            document.body.style.overflow = '';
         });
     });
 }
