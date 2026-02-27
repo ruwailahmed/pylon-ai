@@ -19,7 +19,6 @@
             <img src="assets/images/logo.svg" alt="Pylon AI Logo" class="nav-logo-img">
         </a>
         <div class="nav-links">
-            <a href="index.html">Consulting</a>
             <a href="crm-ai.html">CRM &amp; Systems</a>
             <a href="voice-ai.html" style="color: #fff;">Voice AI</a>
             <a href="openclaw.html">OpenClaw</a>
@@ -37,7 +36,6 @@
     <!-- Mobile Navigation Overlay -->
     <div class="mobile-nav-overlay">
         <div class="mobile-nav-links">
-            <a href="index.html">Consulting</a>
             <a href="crm-ai.html">CRM &amp; Systems</a>
             <a href="voice-ai.html" style="color: #fff;">Voice AI</a>
             <a href="openclaw.html">OpenClaw</a>
@@ -92,6 +90,7 @@
                     <div class="panel-bg"
                         style="background-image: linear-gradient(rgba(10,15,13,0.9), rgba(10,15,13,0.95)), url('assets/images/data-pipeline.png');">
                     </div>
+                    <div class="unhovered-num">1</div>
                     <div class="panel-header">
                         <span class="panel-num">01</span>
                         <h3>&lt;11ms Latency</h3>
@@ -112,6 +111,7 @@
                     <div class="panel-bg"
                         style="background-image: linear-gradient(rgba(15,15,18,0.9), rgba(15,15,18,0.95)), url('assets/images/service-agents.png');">
                     </div>
+                    <div class="unhovered-num">2</div>
                     <div class="panel-header">
                         <span class="panel-num">02</span>
                         <h3>Dynamic Logic</h3>
@@ -132,6 +132,7 @@
                     <div class="panel-bg"
                         style="background-image: linear-gradient(rgba(15,12,5,0.9), rgba(15,12,5,0.95)), url('assets/images/hero-bg-titanium.png');">
                     </div>
+                    <div class="unhovered-num">3</div>
                     <div class="panel-header">
                         <span class="panel-num">03</span>
                         <h3>Live Execution</h3>
@@ -152,6 +153,141 @@
         </div>
     </section>
 
+    <section class="logic-simulator-section" style="padding: 100px 5%; background: #050505;">
+        <div class="container">
+            <div class="section-header text-center" style="margin-bottom: 50px;">
+                <h2 class="gradient-text">Test The Engine.</h2>
+                <p class="section-subtitle">Watch how our Voice AI processes complex human variables in milliseconds.
+                </p>
+            </div>
+
+            <div class="simulator-wrapper glass-card"
+                style="display: flex; overflow: hidden; max-width: 1000px; margin: 0 auto; padding: 0;">
+
+                <div class="sim-controls"
+                    style="width: 35%; background: rgba(255,255,255,0.02); padding: 30px; border-right: 1px solid rgba(255,255,255,0.05);">
+                    <h4
+                        style="color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;">
+                        Inject Scenario</h4>
+
+                    <button class="sim-btn" onclick="runSim('price')">
+                        <strong>Scenario 1: Price Objection</strong>
+                        <span>Caller thinks the service is too expensive.</span>
+                    </button>
+
+                    <button class="sim-btn" onclick="runSim('competitor')">
+                        <strong>Scenario 2: Competitor Drop</strong>
+                        <span>Caller compares you to a cheaper rival.</span>
+                    </button>
+
+                    <button class="sim-btn" onclick="runSim('booking')">
+                        <strong>Scenario 3: Complex Booking</strong>
+                        <span>Caller needs to reschedule dynamically.</span>
+                    </button>
+                </div>
+
+                <div class="sim-terminal"
+                    style="width: 65%; padding: 40px; font-family: monospace; position: relative;">
+                    <div id="sim-default" style="color: #555; text-align: center; margin-top: 100px;">Waiting for
+                        scenario injection...</div>
+
+                    <div id="sim-active" style="display: none;">
+                        <div style="color: #FF7B72; margin-bottom: 20px;">> [HUMAN AUDIO DETECTED]</div>
+                        <div id="sim-human"
+                            style="color: #E2E2E2; font-size: 1.1rem; margin-bottom: 30px; border-left: 2px solid #FF7B72; padding-left: 15px;">
+                        </div>
+
+                        <div id="sim-processing" style="color: #555; margin-bottom: 30px; display: none;">
+                            <div class="proc-step" id="proc-1">[11ms] Audio converted to text.</div>
+                            <div class="proc-step" id="proc-2">[45ms] Intent mapped: <span id="intent-tag"
+                                    style="color: var(--electric-yellow);"></span></div>
+                            <div class="proc-step" id="proc-3">[120ms] Vector Database RAG search complete.</div>
+                            <div class="proc-step" id="proc-4">[180ms] Formulating logic-based rebuttal...</div>
+                        </div>
+
+                        <div id="sim-ai-wrapper" style="display: none;">
+                            <div style="color: #00FFA3; margin-bottom: 10px;">> [PYLON AI EXECUTING]</div>
+                            <div id="sim-ai"
+                                style="color: #fff; font-size: 1.1rem; border-left: 2px solid #00FFA3; padding-left: 15px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="voice-proof-section" style="padding: 100px 5%;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto;">
+
+            <div class="audio-vault glass-card" style="margin-bottom: 60px; padding: 50px;">
+                <h2 class="gradient-text" style="margin-bottom: 10px;">Listen to the Engine.</h2>
+                <p class="text-muted" style="margin-bottom: 40px;">Unedited, raw audio intercepts of Pylon AI in
+                    production.</p>
+
+                <div class="audio-grid"
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                    <div class="audio-track">
+                        <div class="track-info">
+                            <span class="pulse-dot green"></span>
+                            <h4>Inbound Sales & Booking</h4>
+                        </div>
+                        <div class="audio-player" onclick="toggleWave(this)">
+                            <div class="play-btn">▶</div>
+                            <div class="wave-visualizer">
+                                <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="audio-track">
+                        <div class="track-info">
+                            <span class="pulse-dot yellow"></span>
+                            <h4>Hostile Objection Handling</h4>
+                        </div>
+                        <div class="audio-player" onclick="toggleWave(this)">
+                            <div class="play-btn">▶</div>
+                            <div class="wave-visualizer">
+                                <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="roi-calculator glass-card" style="padding: 50px;">
+                <h2 class="gradient-text text-center" style="margin-bottom: 40px;">Calculate Your Saved Capital.</h2>
+
+                <div class="calc-layout" style="display: flex; gap: 50px; align-items: center;">
+                    <div class="calc-controls" style="flex: 1;">
+                        <label style="color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase;">Monthly
+                            Call Volume</label>
+                        <input type="range" id="callVolume" min="500" max="10000" step="500" value="2500"
+                            class="custom-slider" style="width: 100%; margin: 20px 0;">
+                        <div style="color: var(--electric-yellow); font-size: 2rem; font-weight: 900;"
+                            id="volumeDisplay">2,500 calls</div>
+                    </div>
+
+                    <div class="calc-results"
+                        style="flex: 1; background: #050505; padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
+                        <div
+                            style="display: flex; justify-content: space-between; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px;">
+                            <span style="color: #A0A0B0;">Human SDR Cost (Avg):</span>
+                            <span style="color: #FF7B72; font-family: monospace; font-size: 1.2rem;"
+                                id="humanCost">$12,500/mo</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="color: #A0A0B0;">Pylon AI Infrastructure:</span>
+                            <span style="color: #00FFA3; font-family: monospace; font-size: 1.8rem; font-weight: bold;"
+                                id="aiCost">$875/mo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
     <section class="cta-section">
         <div class="container">
             <div class="cta-container glass-card">
@@ -163,6 +299,42 @@
             </div>
         </div>
     </section>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <div class="logo">PYLON AI</div>
+                    <p>The AI edge your competitors don't have. We integrate autonomous workflows into medium and
+                        large-scale enterprises.</p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>System Architecture</h4>
+                    <a href="index.html#services">Enterprise Capabilities</a>
+                    <a href="index.html#process">Integration Framework</a>
+                    <a href="index.html#clawdbot">OpenClaw Swarm</a>
+                    <a href="index.html#work">Proven Impact</a>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Operations</h4>
+                    <p>Based in Brisbane, Australia.</p>
+                    <p>Servicing Nationally.</p>
+                    <a href="mailto:Contact@pylonai.com.au" class="footer-email">Contact@pylon</a>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Pylon AI. All rights reserved.</p>
+                <div class="footer-domains">
+                    <a href="http://pylonai.com.au/" target="_blank">pylonai.com.au</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="js/app.js"></script>
 </body>

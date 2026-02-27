@@ -293,9 +293,9 @@ if (document.querySelector('.pipeline-container')) {
     const stack = document.querySelector('.data-stack');
     document.addEventListener('mousemove', (e) => {
         if (window.innerWidth > 900 && stack) {
-            const x = (e.clientX / window.innerWidth - 0.5) * 20;
-            const y = (e.clientY / window.innerHeight - 0.5) * 20;
-            gsap.to(stack, { rotateX: 60 - y, rotateZ: -45 + x, duration: 1 });
+            const x = (e.clientX / window.innerWidth - 0.5) * 10;
+            const y = (e.clientY / window.innerHeight - 0.5) * 10;
+            gsap.to(stack, { rotateX: 60 - y, rotateZ: -45 + x, duration: 1, ease: "power2.out" });
         }
     });
 }
@@ -433,4 +433,304 @@ if (mobileMenuBtn && mobileNavOverlay) {
             document.body.style.overflow = '';
         });
     });
+}
+
+// --- Voice AI Logic Simulator ---
+const scenarios = {
+    price: {
+        human: "Honestly, $5,000 a month is way out of our budget right now. We're looking for something cheaper.",
+        intent: "PRICE_OBJECTION_HIGH_FRICTION",
+        ai: "I completely understand keeping overhead low. However, our system replaces two full-time SDRs and works 24/7. If we could guarantee a minimum of 15 qualified appointments booked per week, would the ROI make sense for you?"
+    },
+    competitor: {
+        human: "I was looking at ChatBot Pro, and they only charge $200 a month for an AI widget.",
+        intent: "COMPETITOR_COMPARISON",
+        ai: "ChatBot Pro is great for basic text FAQs. But Pylon engineers live voice agents that physically execute API webhooks to charge cards and book calendars. We aren't a widget; we are telecom infrastructure. Would you like me to pull up a side-by-side feature comparison?"
+    },
+    booking: {
+        human: "Actually, cancel my meeting for tomorrow. I need to push it to Thursday afternoon, but I don't know my schedule yet.",
+        intent: "DYNAMIC_RESCHEDULE",
+        ai: "No problem, I've just removed tomorrow's hold from the calendar. I'll send you an SMS right now with a secure link so you can lock in a Thursday afternoon slot once you know your schedule. Did you receive the text?"
+    }
+};
+
+function runSim(type) {
+    const data = scenarios[type];
+
+    // Reset UI
+    document.getElementById('sim-default').style.display = 'none';
+    document.getElementById('sim-active').style.display = 'block';
+    document.getElementById('sim-processing').style.display = 'none';
+    document.getElementById('sim-ai-wrapper').style.display = 'none';
+
+    // Type Human Text
+    const humanDiv = document.getElementById('sim-human');
+    humanDiv.innerHTML = "";
+    let i = 0;
+
+    function typeHuman() {
+        if (i < data.human.length) {
+            humanDiv.innerHTML += data.human.charAt(i);
+            i++;
+            setTimeout(typeHuman, 15);
+        } else {
+            // Start Processing Steps
+            document.getElementById('sim-processing').style.display = 'block';
+            document.getElementById('intent-tag').innerText = data.intent;
+
+            const steps = document.querySelectorAll('.proc-step');
+            steps.forEach(s => s.style.opacity = '0');
+
+            setTimeout(() => { steps[0].style.opacity = '1'; }, 200);
+            setTimeout(() => { steps[1].style.opacity = '1'; }, 600);
+            setTimeout(() => { steps[2].style.opacity = '1'; }, 1100);
+            setTimeout(() => {
+                steps[3].style.opacity = '1';
+
+                // Finally, Type AI Text
+                setTimeout(() => {
+                    document.getElementById('sim-ai-wrapper').style.display = 'block';
+                    const aiDiv = document.getElementById('sim-ai');
+                    aiDiv.innerHTML = "";
+                    let j = 0;
+                    function typeAI() {
+                        if (j < data.ai.length) {
+                            aiDiv.innerHTML += data.ai.charAt(j);
+                            j++;
+                            setTimeout(typeAI, 20);
+                        }
+                    }
+                    typeAI();
+                }, 500);
+
+            }, 1600);
+        }
+    }
+    typeHuman();
+}
+
+// --- CRM Autonomous Engine Simulator ---
+const crmScenarios = {
+    newLead: {
+        title: "INBOUND LEAD (WEBHOOK)",
+        steps: [
+            { t: "[00ms]", a: "Webhook received from /contact-form" },
+            { t: "[42ms]", a: "Extracting email domain: <span class='crm-highlight'>@acmecorp.com</span>" },
+            { t: "[115ms]", a: "Querying LinkedIn API for company data..." },
+            { t: "[850ms]", a: "Data enriched: 500+ employees, Series B, SaaS" },
+            { t: "[920ms]", a: "Calculating Lead Score: <span class='crm-success-text'>94/100 (Tier 1)</span>" },
+            { t: "[1.2s]", a: "Routing lead directly to Enterprise AE (Salesforce ID: #0093)" },
+            { t: "[1.5s]", a: "Drafting personalized intro email using Claude 3.5 Sonnet..." },
+            { t: "[3.1s]", a: "Email sent. Logging action to CRM timeline." }
+        ]
+    },
+    stalledDeal: {
+        title: "STALLED DEAL (CRON JOB)",
+        steps: [
+            { t: "[00ms]", a: "Hourly database scan initiated." },
+            { t: "[34ms]", a: "Flagged: Deal #8812 ('TechNova Expansion') idle for 48h+" },
+            { t: "[88ms]", a: "Checking recent comms: Last email sent Tuesday, no reply." },
+            { t: "[120ms]", a: "Action determined: Send gentle text bump via Twilio API." },
+            { t: "[450ms]", a: "Drafting SMS: 'Hey John, just floating this to the top...'" },
+            { t: "[810ms]", a: "SMS triggered. Updating CRM stage to <span class='crm-highlight'>'Follow-up 1'</span>." },
+            { t: "[1.1s]", a: "Sending Slack alert to Account Exec: 'Automated bump sent to TechNova.'" }
+        ]
+    },
+    notInterested: {
+        title: "OBJECTION REPLY (IMAP PARSE)",
+        steps: [
+            { t: "[00ms]", a: "New email reply detected from prospect." },
+            { t: "[80ms]", a: "Running sentiment analysis. Result: <span class='crm-highlight'>Negative/Timing</span>." },
+            { t: "[130ms]", a: "Extracting intent: 'Not a priority right now, maybe Q3.'" },
+            { t: "[200ms]", a: "Updating CRM status from 'Active' to <span class='crm-highlight'>'Nurture - Q3'</span>." },
+            { t: "[280ms]", a: "Creating automated follow-up task for July 1st." },
+            { t: "[340ms]", a: "Removing prospect from active high-frequency sequence." },
+            { t: "[500ms]", a: "Adding prospect to slow-drip educational newsletter." }
+        ]
+    }
+};
+
+function runCrmSim(type) {
+    const data = crmScenarios[type];
+
+    // Reset UI
+    document.getElementById('crm-default').style.display = 'none';
+    document.getElementById('crm-active').style.display = 'block';
+    document.getElementById('crm-success').style.display = 'none';
+
+    document.getElementById('crm-trigger-name').innerText = data.title;
+
+    const stepsContainer = document.getElementById('crm-execution-steps');
+    stepsContainer.innerHTML = ''; // Clear old steps
+
+    // Generate step elements
+    data.steps.forEach((step, index) => {
+        const div = document.createElement('div');
+        div.className = 'crm-step';
+        div.id = `crm-step-${index}`;
+        div.innerHTML = `<span class="crm-time">${step.t}</span><span class="crm-action">${step.a}</span>`;
+        stepsContainer.appendChild(div);
+    });
+
+    // Animate steps appearing sequentially
+    let delay = 0;
+    data.steps.forEach((step, index) => {
+        delay += 600; // 600ms between each line printing
+        setTimeout(() => {
+            const stepEl = document.getElementById(`crm-step-${index}`);
+            if (stepEl) {
+                stepEl.style.opacity = '1';
+            }
+
+            // If it's the last step, show success block shortly after
+            if (index === data.steps.length - 1) {
+                setTimeout(() => {
+                    document.getElementById('crm-success').style.display = 'block';
+                }, 800);
+            }
+        }, delay);
+    });
+}
+
+// --- Voice AI Audio Waveform Visualizer ---
+function toggleWave(element) {
+    const isPlaying = element.classList.contains('playing');
+    document.querySelectorAll('.audio-player').forEach(el => el.classList.remove('playing'));
+    if (!isPlaying) { element.classList.add('playing'); }
+}
+
+// --- Voice AI ROI Calculator ---
+const slider = document.getElementById('callVolume');
+if (slider) {
+    slider.addEventListener('input', function () {
+        const volume = parseInt(this.value);
+        document.getElementById('volumeDisplay').innerText = volume.toLocaleString() + " calls";
+
+        // Rough agency math: Humans cost ~$5 per call (salary + overhead). AI costs ~$0.35.
+        const humanCost = volume * 5;
+        const aiCost = volume * 0.35;
+
+        document.getElementById('humanCost').innerText = "$" + humanCost.toLocaleString() + "/mo";
+        document.getElementById('aiCost').innerText = "$" + aiCost.toLocaleString() + "/mo";
+    });
+}
+
+// --- OpenClaw Live JSON Configurator ---
+let swarmConfig = {
+    "pylon_deployment": {
+        "client": "PENDING_AUDIT",
+        "framework": "OpenClaw v2.1",
+        "modules": ["core_engine"],
+        "security": "standard",
+        "estimated_api_cost": "$$$"
+    }
+};
+
+function toggleConfig(module, element) {
+    element.classList.toggle('active');
+    const isActive = element.classList.contains('active');
+
+    if (module === 'metal') {
+        swarmConfig.pylon_deployment.security = isActive ? "VPC_PRIVATE_CLUSTER_ISOLATED" : "standard";
+    }
+    if (module === 'routing') {
+        if (isActive) {
+            swarmConfig.pylon_deployment.modules.push("llama_3_local_router");
+            swarmConfig.pylon_deployment.estimated_api_cost = "$";
+        } else {
+            swarmConfig.pylon_deployment.modules = swarmConfig.pylon_deployment.modules.filter(e => e !== "llama_3_local_router");
+            swarmConfig.pylon_deployment.estimated_api_cost = "$$$";
+        }
+    }
+    if (module === 'marketing') {
+        if (isActive) {
+            swarmConfig.pylon_deployment.agents = ["scraper_agent", "copy_agent", "qa_agent"];
+        } else {
+            delete swarmConfig.pylon_deployment.agents;
+        }
+    }
+
+    // Pretty print the updated JSON to the terminal
+    document.getElementById('json-output').innerText = JSON.stringify(swarmConfig, null, 2);
+
+    // Quick flash effect to show code updating
+    const terminal = document.getElementById('json-output');
+    terminal.style.color = "#00FFA3";
+    setTimeout(() => { terminal.style.color = "#A5D6FF"; }, 200);
+}
+
+// --- CRM Page: Lead Enrichment Sandbox ---
+function runEnrichment() {
+    document.getElementById('enrich-waiting').style.display = 'none';
+    document.getElementById('enrich-result').style.display = 'none';
+    const processing = document.getElementById('enrich-processing');
+    processing.style.display = 'block';
+
+    const steps = document.querySelectorAll('.enrich-step');
+    steps.forEach(s => { s.style.opacity = '0'; s.style.transform = 'translateY(10px)'; });
+
+    // Simulate API scraping delays
+    setTimeout(() => { steps[0].style.opacity = '1'; steps[0].style.transform = 'translateY(0)'; }, 300);
+    setTimeout(() => { steps[1].style.opacity = '1'; steps[1].style.transform = 'translateY(0)'; }, 1100);
+    setTimeout(() => { steps[2].style.opacity = '1'; steps[2].style.transform = 'translateY(0)'; }, 1800);
+    setTimeout(() => { steps[3].style.opacity = '1'; steps[3].style.transform = 'translateY(0)'; }, 2400);
+
+    // Reveal final card
+    setTimeout(() => {
+        processing.style.display = 'none';
+        document.getElementById('enrich-result').style.display = 'block';
+        gsap.from("#enrich-result", { opacity: 0, x: -20, duration: 0.5 });
+    }, 3000);
+}
+
+// --- CRM Page: Payload Tracer Animation ---
+function firePayload() {
+    // Reset nodes
+    document.querySelectorAll('.target-node').forEach(node => {
+        node.classList.remove('success');
+        node.querySelector('.node-status').innerText = "Awaiting Payload...";
+        node.querySelector('.node-status').style.color = "var(--text-muted)";
+    });
+
+    if (typeof MotionPathPlugin !== "undefined") {
+        gsap.registerPlugin(MotionPathPlugin);
+
+        const paths = ['#path-ghl', '#path-slack', '#path-email'];
+        const pulses = ['#pulse-ghl', '#pulse-slack', '#pulse-email'];
+        const nodes = ['#node-ghl', '#node-slack', '#node-email'];
+        const messages = ["Pipeline Updated", "Sales Team Alerted", "Email Dispatched"];
+
+        pulses.forEach((pulse, index) => {
+            gsap.set(pulse, { opacity: 1 });
+            gsap.to(pulse, {
+                duration: 1.2,
+                ease: "power2.inOut",
+                motionPath: {
+                    path: paths[index],
+                    align: paths[index],
+                    alignOrigin: [0.5, 0.5]
+                },
+                onComplete: () => {
+                    gsap.set(pulse, { opacity: 0 }); // Hide pulse at end
+                    // Light up target node
+                    const target = document.querySelector(nodes[index]);
+                    target.classList.add('success');
+                    target.querySelector('.node-status').innerText = messages[index];
+                    target.querySelector('.node-status').style.color = "var(--electric-yellow)";
+                }
+            });
+        });
+    } else {
+        // Fallback if plugin isn't loaded - just light them up sequentially
+        setTimeout(() => { lightUpNode('#node-ghl', "Pipeline Updated"); }, 400);
+        setTimeout(() => { lightUpNode('#node-slack', "Sales Team Alerted"); }, 800);
+        setTimeout(() => { lightUpNode('#node-email', "Email Dispatched"); }, 1200);
+    }
+}
+
+function lightUpNode(selector, msg) {
+    const target = document.querySelector(selector);
+    target.classList.add('success');
+    target.querySelector('.node-status').innerText = msg;
+    target.querySelector('.node-status').style.color = "var(--electric-yellow)"; // Changed from green to yellow
 }

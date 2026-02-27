@@ -20,7 +20,6 @@
             <img src="assets/images/logo.svg" alt="Pylon AI Logo" class="nav-logo-img">
         </a>
         <div class="nav-links">
-            <a href="index.html">Consulting</a>
             <a href="crm-ai.html">CRM &amp; Systems</a>
             <a href="voice-ai.html">Voice AI</a>
             <a href="openclaw.html" style="color: #fff;">OpenClaw</a>
@@ -38,7 +37,6 @@
     <!-- Mobile Navigation Overlay -->
     <div class="mobile-nav-overlay">
         <div class="mobile-nav-links">
-            <a href="index.html">Consulting</a>
             <a href="crm-ai.html">CRM &amp; Systems</a>
             <a href="voice-ai.html">Voice AI</a>
             <a href="openclaw.html" style="color: #fff;">OpenClaw</a>
@@ -255,6 +253,66 @@
         </div>
     </section>
 
+    <section class="swarm-configurator-section" style="padding: 100px 5%; background: #0A0A0C;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto;">
+            <div class="section-header text-center" style="margin-bottom: 60px;">
+                <h2 class="gradient-text">Architect Your Swarm.</h2>
+                <p class="section-subtitle">Select your required OpenClaw infrastructure modules and view the live
+                    deployment payload.</p>
+            </div>
+
+            <div class="config-wrapper"
+                style="display: flex; gap: 40px; background: #050505; border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden;">
+
+                <div class="config-controls"
+                    style="flex: 1; padding: 40px; background: rgba(255,255,255,0.02); border-right: 1px solid rgba(255,255,255,0.05);">
+
+                    <div class="toggle-group" onclick="toggleConfig('metal', this)">
+                        <div class="toggle-header">
+                            <h4>Bare-Metal Security Audit</h4>
+                            <div class="toggle-switch"></div>
+                        </div>
+                        <p>Deploy on private VPC. Zero data leakage.</p>
+                    </div>
+
+                    <div class="toggle-group" onclick="toggleConfig('routing', this)">
+                        <div class="toggle-header">
+                            <h4>Llama-3 Token Routing</h4>
+                            <div class="toggle-switch"></div>
+                        </div>
+                        <p>Route simple tasks locally to cut API costs by 90%.</p>
+                    </div>
+
+                    <div class="toggle-group" onclick="toggleConfig('marketing', this)">
+                        <div class="toggle-header">
+                            <h4>Marketing Agent Layer</h4>
+                            <div class="toggle-switch"></div>
+                        </div>
+                        <p>Inject Scraper, Writer, and QA agents.</p>
+                    </div>
+
+                </div>
+
+                <div class="config-terminal"
+                    style="flex: 1.2; padding: 40px; font-family: monospace; font-size: 0.9rem; color: #A5D6FF; position: relative;">
+                    <div style="color: #555; margin-bottom: 20px;">// LIVE DEPLOYMENT PAYLOAD</div>
+                    <pre id="json-output" style="margin: 0; white-space: pre-wrap;">
+{
+  "pylon_deployment": {
+    "client": "PENDING_AUDIT",
+    "framework": "OpenClaw v2.1",
+    "modules": [
+      "core_engine"
+    ],
+    "estimated_latency": "45ms"
+  }
+}
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="cta-section">
         <div class="container">
             <div class="cta-container glass-card">
@@ -266,6 +324,42 @@
             </div>
         </div>
     </section>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <div class="logo">PYLON AI</div>
+                    <p>The AI edge your competitors don't have. We integrate autonomous workflows into medium and
+                        large-scale enterprises.</p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>System Architecture</h4>
+                    <a href="index.html#services">Enterprise Capabilities</a>
+                    <a href="index.html#process">Integration Framework</a>
+                    <a href="index.html#clawdbot">OpenClaw Swarm</a>
+                    <a href="index.html#work">Proven Impact</a>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Operations</h4>
+                    <p>Based in Brisbane, Australia.</p>
+                    <p>Servicing Nationally.</p>
+                    <a href="mailto:Contact@pylonai.com.au" class="footer-email">Contact@pylon</a>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Pylon AI. All rights reserved.</p>
+                <div class="footer-domains">
+                    <a href="http://pylonai.com.au/" target="_blank">pylonai.com.au</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="js/app.js"></script>
 </body>

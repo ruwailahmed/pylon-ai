@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js"></script>
 </head>
 
 <body class="service-page">
@@ -19,8 +20,7 @@
             <img src="assets/images/logo.svg" alt="Pylon AI Logo" class="nav-logo-img">
         </a>
         <div class="nav-links">
-            <a href="index.html">Consulting</a>
-            <a href="crm-ai.html">CRM &amp; Systems</a>
+            <a href="crm-ai.html" style="color: #fff;">CRM &amp; Systems</a>
             <a href="voice-ai.html">Voice AI</a>
             <a href="openclaw.html">OpenClaw</a>
         </div>
@@ -37,7 +37,6 @@
     <!-- Mobile Navigation Overlay -->
     <div class="mobile-nav-overlay">
         <div class="mobile-nav-links">
-            <a href="index.html">Consulting</a>
             <a href="crm-ai.html" style="color: #fff;">CRM &amp; Systems</a>
             <a href="voice-ai.html">Voice AI</a>
             <a href="openclaw.html">OpenClaw</a>
@@ -59,8 +58,6 @@
                     <div class="data-layer layer-1"></div>
                     <div class="data-layer layer-2"></div>
                     <div class="data-layer layer-3"></div>
-                    <div class="floating-data-node node-a">Lead Data</div>
-                    <div class="floating-data-node node-b">Enrichment</div>
                 </div>
             </div>
         </div>
@@ -137,6 +134,181 @@
         </div>
     </section>
 
+    <section class="crm-interactive-section" style="padding: 100px 5%; position: relative; z-index: 10;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto;">
+
+            <div class="enrichment-sandbox glass-card"
+                style="margin-bottom: 80px; padding: 0; overflow: hidden; border: 1px solid var(--glass-border); background: rgba(10, 15, 13, 0.4);">
+
+                <div
+                    style="padding: 40px; border-bottom: 1px solid rgba(255,255,255,0.03); background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, transparent 100%);">
+                    <h2 class="gradient-text" style="margin-bottom: 10px;">Autonomous Data Enrichment.</h2>
+                    <p class="text-muted">Stop forcing sales reps to do manual research. Watch the AI build a complete
+                        corporate profile from a single messy data point.</p>
+                </div>
+
+                <div class="sandbox-layout" style="display: flex; min-height: 400px; position: relative;">
+                    <div class="glass-divider"></div>
+
+                    <div class="sandbox-input" style="flex: 1; padding: 40px; position: relative;">
+                        <h4
+                            style="color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;">
+                            Raw CRM Entry (Inbound Webhook)</h4>
+
+                        <div class="raw-data-block glass-card"
+                            style="padding: 24px; font-family: monospace; color: #FF7B72; margin-bottom: 30px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,123,114,0.1);">
+                            {<br>
+                            &nbsp;&nbsp;"name": <span style="color:#A5D6FF;">"j. smith"</span>,<br>
+                            &nbsp;&nbsp;"email": <span style="color:#A5D6FF;">"jsmith@acmecorp.io"</span>,<br>
+                            &nbsp;&nbsp;"company": <span style="color:#A5D6FF;">""</span>,<br>
+                            &nbsp;&nbsp;"phone": <span style="color:#A5D6FF;">""</span><br>
+                            }
+                        </div>
+
+                        <button class="glass-btn-primary" onclick="runEnrichment()"
+                            style="width: 100%; padding: 18px; font-size: 1rem; letter-spacing: 0.5px; box-shadow: 0 10px 30px rgba(242, 200, 0, 0.2);">Initialize
+                            Enrichment</button>
+                    </div>
+
+                    <div class="sandbox-output" style="flex: 1.2; padding: 40px; position: relative;">
+                        <h4
+                            style="color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;">
+                            Pylon AI Output</h4>
+
+                        <div id="enrich-waiting"
+                            style="color: var(--text-muted); font-family: monospace; margin-top: 50px; opacity: 0.5;">
+                            Waiting for pipeline execution...</div>
+
+                        <div id="enrich-processing"
+                            style="display: none; font-family: monospace; color: var(--text-muted);">
+                            <div class="enrich-step step-1">> Scraping domain: acmecorp.io... <span
+                                    style="color: #00FFA3;">[Found]</span></div>
+                            <div class="enrich-step step-2">> Cross-referencing LinkedIn API... <span
+                                    style="color: #00FFA3;">[Match: Jonathan Smith]</span></div>
+                            <div class="enrich-step step-3">> Fetching company revenue data... <span
+                                    style="color: #00FFA3;">[Est. $25M-$50M]</span></div>
+                            <div class="enrich-step step-4">> Calculating Buying Intent Score... <span
+                                    style="color: #00FFA3;">[Done]</span></div>
+                        </div>
+
+                        <div id="enrich-result" class="glass-card"
+                            style="display: none; margin-top: 20px; border-left: 3px solid var(--electric-yellow); padding: 30px; background: rgba(242, 200, 0, 0.03);">
+                            <div
+                                style="color: var(--electric-yellow); font-family: monospace; font-size: 0.8rem; margin-bottom: 15px; letter-spacing: 1px;">
+                                DATA CLEANSED & UPDATED IN GHL</div>
+                            <h3 style="color: #fff; margin-bottom: 5px; font-size: 1.8rem;">Jonathan Smith</h3>
+                            <p style="color: #A0A0B0; margin-bottom: 20px;">Chief Operating Officer @ Acme Corporation
+                            </p>
+
+                            <div
+                                style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-family: monospace; font-size: 0.9rem;">
+                                <div><span style="color: #555;">Email:</span> <span
+                                        style="color: #E2E2E2;">jonathan.s@acmecorp.io</span></div>
+                                <div><span style="color: #555;">Phone:</span> <span style="color: #E2E2E2;">+1 (555)
+                                        019-8372</span></div>
+                                <div><span style="color: #555;">HQ:</span> <span style="color: #E2E2E2;">Austin,
+                                        TX</span></div>
+                                <div><span style="color: #555;">Intent:</span> <span
+                                        style="color: #00FFA3; font-weight: bold; text-shadow: 0 0 10px rgba(0,255,163,0.4);">HIGH
+                                        (88/100)</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="payload-tracer-section text-center">
+                <h2 class="gradient-text" style="margin-bottom: 10px;">Bypass Zapier. Go Direct.</h2>
+                <p class="text-muted"
+                    style="margin-bottom: 60px; max-width: 600px; margin-left: auto; margin-right: auto;">We build
+                    direct, server-to-server API connections. Zero middleman fees, zero delay, infinite custom logic.
+                </p>
+
+                <div class="tracer-diagram"
+                    style="position: relative; max-width: 900px; margin: 0 auto; height: 400px; display: flex; align-items: center; justify-content: center;">
+
+                    <div class="tracer-node trigger-node"
+                        style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); text-align: center; cursor: pointer; z-index: 10;"
+                        onclick="firePayload()">
+                        <div class="radar-rings"></div>
+                        <div class="node-circle glass-card">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="5" width="20" height="14" rx="2" />
+                                <line x1="2" y1="10" x2="22" y2="10" />
+                            </svg>
+                        </div>
+                        <h4 style="color: #fff; font-size: 0.95rem; margin-top: 15px;">Stripe Payment</h4>
+                        <span class="pulse-tag">CLICK TO FIRE</span>
+                    </div>
+
+                    <svg
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none;">
+                        <path id="path-ghl" d="M 120 200 C 250 200, 350 70, 650 70" fill="none"
+                            stroke="rgba(255,255,255,0.03)" stroke-width="2" />
+                        <path id="path-slack" d="M 120 200 C 250 200, 450 200, 650 200" fill="none"
+                            stroke="rgba(255,255,255,0.03)" stroke-width="2" />
+                        <path id="path-email" d="M 120 200 C 250 200, 350 330, 650 330" fill="none"
+                            stroke="rgba(255,255,255,0.03)" stroke-width="2" />
+
+                        <circle class="payload-pulse" id="pulse-ghl" r="5" fill="#F2C800"
+                            filter="drop-shadow(0 0 10px #F2C800)" opacity="0" />
+                        <circle class="payload-pulse" id="pulse-slack" r="5" fill="#F2C800"
+                            filter="drop-shadow(0 0 10px #F2C800)" opacity="0" />
+                        <circle class="payload-pulse" id="pulse-email" r="5" fill="#F2C800"
+                            filter="drop-shadow(0 0 10px #F2C800)" opacity="0" />
+                    </svg>
+
+                    <div
+                        style="position: absolute; right: 0; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: space-between; height: 100%; width: 280px;">
+
+                        <div class="tracer-node target-node glass-card" id="node-ghl">
+                            <div class="premium-svg-icon small-node-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" />
+                                    <path
+                                        d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" />
+                                </svg>
+                            </div>
+                            <div class="node-text-content">
+                                <h4>GoHighLevel</h4>
+                                <span class="node-status">Awaiting Payload...</span>
+                            </div>
+                        </div>
+
+                        <div class="tracer-node target-node glass-card" id="node-slack">
+                            <div class="premium-svg-icon small-node-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path
+                                        d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                                </svg>
+                            </div>
+                            <div class="node-text-content">
+                                <h4>Slack Alerts</h4>
+                                <span class="node-status">Awaiting Payload...</span>
+                            </div>
+                        </div>
+
+                        <div class="tracer-node target-node glass-card" id="node-email">
+                            <div class="premium-svg-icon small-node-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                    <polyline points="22,6 12,13 2,6" />
+                                </svg>
+                            </div>
+                            <div class="node-text-content">
+                                <h4>AI Onboarding</h4>
+                                <span class="node-status">Awaiting Payload...</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
     <section class="cta-section" style="padding-top: 50px;">
         <div class="container">
             <div class="cta-container glass-card">
@@ -147,6 +319,42 @@
             </div>
         </div>
     </section>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <div class="logo">PYLON AI</div>
+                    <p>The AI edge your competitors don't have. We integrate autonomous workflows into medium and
+                        large-scale enterprises.</p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>System Architecture</h4>
+                    <a href="index.html#services">Enterprise Capabilities</a>
+                    <a href="index.html#process">Integration Framework</a>
+                    <a href="index.html#clawdbot">OpenClaw Swarm</a>
+                    <a href="index.html#work">Proven Impact</a>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Operations</h4>
+                    <p>Based in Brisbane, Australia.</p>
+                    <p>Servicing Nationally.</p>
+                    <a href="mailto:Contact@pylonai.com.au" class="footer-email">Contact@pylon</a>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Pylon AI. All rights reserved.</p>
+                <div class="footer-domains">
+                    <a href="http://pylonai.com.au/" target="_blank">pylonai.com.au</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="js/app.js"></script>
 </body>
