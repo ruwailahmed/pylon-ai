@@ -254,6 +254,7 @@ body {
     background: linear-gradient(180deg, #FFFFFF 0%, #8A8A9B 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .hero-subtext {
@@ -550,6 +551,7 @@ body {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent 40%, rgba(226, 226, 226, 0.8));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask-composite: exclude;
     opacity: 0.3;
     transition: opacity 0.5s ease;
@@ -883,6 +885,7 @@ body {
     background: linear-gradient(135deg, var(--text-main) 0%, #666 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
     text-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
 }
 
@@ -3482,7 +3485,18 @@ body {
     filter: drop-shadow(0 0 8px rgba(242, 200, 0, 0.6));
 }
 
+.enrich-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
 @media(max-width: 900px) {
+    .enrich-details-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
     .glass-divider {
         display: none;
     }
